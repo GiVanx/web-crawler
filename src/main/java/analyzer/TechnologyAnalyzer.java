@@ -2,6 +2,7 @@ package analyzer;
 
 import analyzer.exceptions.TechnologyAnalyzerException;
 import analyzer.model.App;
+import analyzer.model.Category;
 import analyzer.model.TechnologyData;
 import file.IFileReader;
 
@@ -47,7 +48,8 @@ public class TechnologyAnalyzer {
         List<String> technologyNames = new ArrayList<>();
         Map<String, App> technologyMap = this.technologyData.getApps();
         technologyMap.keySet().forEach(technologyName -> {
-            if (technologyMap.get(technologyName).getScriptPatterns() != null) {
+            App app = technologyMap.get(technologyName);
+            if (app.getScriptPatterns() != null && app.getCats().contains(Category.JAVASCRIPT_LIBRARY.getValue())) {
                 List<Pattern> scriptPatterns = technologyMap.get(technologyName).getScriptPatterns();
                 if (scriptPatterns != null && scriptPatterns.stream().anyMatch(pattern -> pattern.matcher(srcAttribute).find())) {
                     technologyNames.add(technologyName);

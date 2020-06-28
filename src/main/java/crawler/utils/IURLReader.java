@@ -1,8 +1,11 @@
 package crawler.utils;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IURLReader {
 
-    List<String> getAttribute(String htmlTag, String attributeName);
+    List<String> getAttributes(String htmlTag, String attributeName);
+
+    void init(String url) throws IOException;
 }

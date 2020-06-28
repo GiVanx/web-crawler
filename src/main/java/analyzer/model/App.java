@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class App {
+    List<Integer> cats;
     List<Pattern> scriptPatterns;
 
     @JsonCreator
@@ -21,6 +22,14 @@ public class App {
                 this.scriptPatterns.add(Pattern.compile((String) scriptPatterns));
             }
         }
+    }
+
+    public List<Integer> getCats() {
+        return cats;
+    }
+
+    public void setCats(List<Integer> cats) {
+        this.cats = cats;
     }
 
     public List<Pattern> getScriptPatterns() {

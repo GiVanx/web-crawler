@@ -1,11 +1,17 @@
 package google;
 
-import crawler.AppProperties;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import crawler.utils.AppProperties;
 import google.model.GoogleSearchResult;
 import google.model.exception.GoogleSearchException;
 import http.IHttpService;
 
-public class GoogleSearcher {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+
+public class GoogleSearcher implements IGoogleSearcher {
 
     private String searchEngineID;
     private String searchApiKey;
@@ -18,10 +24,14 @@ public class GoogleSearcher {
         this.searchApiKey = AppProperties.getInstance().getProperties().getProperty("google.search.api.key");
     }
 
-    GoogleSearchResult search(String searchTerm) {
+    @Override
+    public GoogleSearchResult search(String searchTerm) {
 
         try {
-            GoogleSearchResult searchResult = this.httpService.get(getSearchUrl(searchTerm), GoogleSearchResult.class);
+//            GoogleSearchResult searchResult = this.httpService.get(getSearchUrl(searchTerm), GoogleSearchResult.class);
+            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            GoogleSearchResult searchResult = objectMapper.readValue(new File("mockGoogleResult.txt"), GoogleSearchResult.class);
+
             return searchResult;
         } catch (Exception e) {
             throw new GoogleSearchException(e);

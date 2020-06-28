@@ -1,4 +1,4 @@
-package crawler;
+package crawler.utils;
 
 import crawler.model.exceptions.CrawlerException;
 

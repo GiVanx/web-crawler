@@ -1,4 +1,4 @@
-package model.exceptions;
+package crawler.model.exceptions;
 
 public class CrawlerException extends RuntimeException {
 
