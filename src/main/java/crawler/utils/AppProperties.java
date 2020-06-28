@@ -1,6 +1,6 @@
 package crawler;
 
-import model.exceptions.CrawlerException;
+import crawler.model.exceptions.CrawlerException;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
