@@ -7,9 +7,10 @@ import google.model.GoogleSearchResult;
 import google.model.exception.GoogleSearchException;
 import http.IHttpService;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class GoogleSearcher implements IGoogleSearcher {
 
@@ -28,21 +29,23 @@ public class GoogleSearcher implements IGoogleSearcher {
     public GoogleSearchResult search(String searchTerm) {
 
         try {
-//            GoogleSearchResult searchResult = this.httpService.get(getSearchUrl(searchTerm), GoogleSearchResult.class);
-            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            GoogleSearchResult searchResult = objectMapper.readValue(new File("mockGoogleResult.txt"), GoogleSearchResult.class);
+            System.out.println("[Google Search] Searching for '" + searchTerm + "'...");
+            GoogleSearchResult searchResult = this.httpService.get(getSearchUrl(searchTerm), GoogleSearchResult.class);
+            System.out.println("[Google Search][Successful]");
+//            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//            GoogleSearchResult searchResult = objectMapper.readValue(new File("mockGoogleResult.txt"), GoogleSearchResult.class);
 
             return searchResult;
         } catch (Exception e) {
+            System.out.println("[Google Search][Failed]");
             throw new GoogleSearchException(e);
         }
     }
 
-    String getSearchUrl(String searchTerm) {
+    String getSearchUrl(String searchTerm) throws UnsupportedEncodingException {
         return String.format(GOOGLE_SEARCH_URL_FORMAT,
                 this.searchApiKey,
                 this.searchEngineID,
-                searchTerm
-        );
+                URLEncoder.encode(searchTerm, StandardCharsets.UTF_8.toString()));
     }
 }

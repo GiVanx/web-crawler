@@ -1,40 +1,45 @@
 package crawler;
 
-import analyzer.TechnologyAnalyzer;
+import analyzer.factory.ITechnologyAnalyzerFactory;
 import analyzer.factory.TechnologyAnalyzerFactory;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import crawler.factory.CrawlerWorkerFactory;
+import google.GoogleSearcher;
+import http.HttpService;
+import json.JsonReader;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
+import java.util.List;
+import java.util.Scanner;
 
 public class App {
 
-    public static String getLibraryName(String scriptSrcAttr) {
-        String res = scriptSrcAttr.substring(scriptSrcAttr.lastIndexOf('/') + 1);
+    public static void main(String[] args) {
 
-        int dotIndex = res.indexOf('.');
-        if (dotIndex >= 0) {
-            res = res.substring(0, res.indexOf('.'));
+        ITechnologyAnalyzerFactory technologyAnalyzerFactory = new TechnologyAnalyzerFactory();
+
+        WebCrawler crawler = new WebCrawler(new GoogleSearcher(new HttpService(new JsonReader(new ObjectMapper()))), new CrawlerWorkerFactory(technologyAnalyzerFactory));
+
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("\n[Press 'e' to exit] >> ");
+
+            String searchTerm = scanner.nextLine();
+
+            if (searchTerm.length() == 1 && searchTerm.charAt(0) == 'e') {
+                break;
+            }
+
+            System.out.println();
+            List<String> topJsLibraries = crawler.crawl(searchTerm);
+
+            if (topJsLibraries.size() > 0) {
+                System.out.println("\nTop 5 Javascript libraries:");
+                for (int i = 0; i < topJsLibraries.size(); i++) {
+                    System.out.println(String.format("%d) %s", i + 1, topJsLibraries.get(i)));
+                }
+            }
         }
 
-        return res;
-    }
-
-    public static void main(String[] args) throws IOException, ExecutionException, InterruptedException {
-
-//        WebCrawler crawler = new WebCrawler(new GoogleSearcher(new HttpService(new ObjectMapper())), new CrawlerWorkerFactory());
-//
-//        System.out.println("Final: " + crawler.crawl("cars"));
-        TechnologyAnalyzer technologyAnalyzer = new TechnologyAnalyzerFactory().getOrCreate();
-        technologyAnalyzer.getTechnologyName("https://www.baeldung.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp");
-
-//        System.out.println("https://www.baeldung.com/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp".matches("jquery.*\\.js(?:\\?ver(?:sion)?=([\\d.]+))?\\;version:\\1"));
-//
-//        Pattern p = Pattern.compile("jquery.*\\.js(?:\\?ver(?:sion)?=([\\d.]+))?\\;version:\\1");
-//        Matcher matcher = p.matcher("jquery-3.0.0.js");
-//
-//        while (matcher.find()) {
-//            System.out.println(matcher.start() + " " + matcher.end());
-//        }
+        crawler.stop();
     }
 }

@@ -2,7 +2,6 @@ package analyzer;
 
 import analyzer.exceptions.TechnologyAnalyzerException;
 import analyzer.model.App;
-import analyzer.model.Category;
 import analyzer.model.TechnologyData;
 import file.IFileReader;
 
@@ -12,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class TechnologyAnalyzer {
+public class TechnologyAnalyzer implements ITechnologyAnalyzer {
 
     private static TechnologyAnalyzer technologyAnalyzer;
     private IFileReader fileReader;
@@ -26,7 +25,10 @@ public class TechnologyAnalyzer {
     private void init() {
         try {
             System.out.println("[Technology Analyzer] Loading technology information");
-            this.technologyData = fileReader.read(TECHNOLOGY_DATA_FILE_PATH, TechnologyData.class);
+            technologyData = fileReader.read(TECHNOLOGY_DATA_FILE_PATH, TechnologyData.class);
+
+            technologyData.filterJsLibraries();
+
             System.out.println(technologyData);
             System.out.println("[Technology Analyzer] Loading technology information succeeded");
         } catch (IOException e) {
@@ -43,13 +45,16 @@ public class TechnologyAnalyzer {
         return technologyAnalyzer;
     }
 
-    public String getTechnologyName(String srcAttribute) {
+    public String getJsLibraryName(String srcAttribute) {
+
+//        System.out.println("attr " + srcAttribute);
 
         List<String> technologyNames = new ArrayList<>();
         Map<String, App> technologyMap = this.technologyData.getApps();
         technologyMap.keySet().forEach(technologyName -> {
             App app = technologyMap.get(technologyName);
-            if (app.getScriptPatterns() != null && app.getCats().contains(Category.JAVASCRIPT_LIBRARY.getValue())) {
+            if (app.getScriptPatterns() != null) {
+//                System.out.println("tech " + technologyName);
                 List<Pattern> scriptPatterns = technologyMap.get(technologyName).getScriptPatterns();
                 if (scriptPatterns != null && scriptPatterns.stream().anyMatch(pattern -> pattern.matcher(srcAttribute).find())) {
                     technologyNames.add(technologyName);

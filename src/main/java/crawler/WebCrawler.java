@@ -1,43 +1,58 @@
 package crawler;
 
+import crawler.factory.ICrawlerWorkerFactory;
+import crawler.model.exceptions.CrawlerException;
 import google.IGoogleSearcher;
 import google.model.GoogleSearchResult;
 
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 public class WebCrawler {
 
-    IGoogleSearcher googleSearcher;
+    private IGoogleSearcher googleSearcher;
     private static final int MAX_NUMBER_OF_WORKERS = 10;
     private static final int NUMBER_TOP_JS_LIBRARIES = 5;
     private ICrawlerWorkerFactory workerFactory;
+    private ExecutorService executorService;
 
     public WebCrawler(IGoogleSearcher googleSearcher, ICrawlerWorkerFactory workerFactory) {
         this.googleSearcher = googleSearcher;
         this.workerFactory = workerFactory;
+        executorService = Executors.newFixedThreadPool(MAX_NUMBER_OF_WORKERS);
     }
 
-    public List<String> crawl(String searchTerm) throws InterruptedException, ExecutionException {
+    public List<String> crawl(String searchTerm) {
 
         GoogleSearchResult searchResult = googleSearcher.search(searchTerm);
-
-        ExecutorService executorService = Executors.newFixedThreadPool(MAX_NUMBER_OF_WORKERS);
 
         List<CrawlerWorker> workers = searchResult.getItems().stream().map(item -> workerFactory.create(item.getLink()))
                 .collect(Collectors.toList());
 
-        List<Future<Map<String, Integer>>> workerFutures = executorService.invokeAll(workers);
+        try {
+            List<Future<Map<String, Integer>>> workerFutures = executorService.invokeAll(workers);
 
-        Map<String, Integer> finalResult = gatherResults(workerFutures);
+            Map<String, Integer> finalResult = gatherResults(workerFutures);
+            return getTopJsLibraryNames(finalResult);
 
-        System.out.println("Libraries count: " + finalResult);
+        } catch (Exception e) {
+            System.err.println("[Web Crawler] Execution failed for search term '" + searchTerm + "'");
+            throw new CrawlerException(e);
+        }
+    }
 
-        return getTopJsLibraryNames(finalResult);
+    public void stop() {
+        if (executorService != null) {
+            executorService.shutdown();
+            try {
+                if (!executorService.awaitTermination(800, TimeUnit.MILLISECONDS)) {
+                    executorService.shutdownNow();
+                }
+            } catch (InterruptedException e) {
+                executorService.shutdownNow();
+            }
+        }
     }
 
     private List<String> getTopJsLibraryNames(Map<String, Integer> finalResult) {

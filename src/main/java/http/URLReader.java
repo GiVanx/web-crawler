@@ -1,4 +1,4 @@
-package crawler.utils;
+package http;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

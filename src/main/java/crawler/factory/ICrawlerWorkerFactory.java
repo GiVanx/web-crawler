@@ -1,4 +1,6 @@
-package crawler;
+package crawler.factory;
+
+import crawler.CrawlerWorker;
 
 public interface ICrawlerWorkerFactory {
 
