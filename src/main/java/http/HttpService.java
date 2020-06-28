@@ -1,12 +1,22 @@
 package http;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class HttpService {
+public class HttpService implements IHttpService {
 
-    public String get(String requestUrl) throws IOException {
+    private ObjectMapper objectMapper;
+
+    public HttpService(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
+    public <T> T get(String requestUrl, Class outputClass) throws IOException {
 
         URL url = new URL(requestUrl);
 
@@ -14,9 +24,9 @@ public class HttpService {
         int c;
         InputStreamReader streamReader = new InputStreamReader(url.openStream());
         while ((c = streamReader.read()) != -1) {
-            System.out.println(c);
             response.append((char)c);
         }
-        return response.toString();
+
+        return (T)this.objectMapper.readValue(response.toString(), outputClass);
     }
 }

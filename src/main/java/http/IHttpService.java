@@ -1,6 +1,8 @@
 package http;
 
+import java.io.IOException;
+
 public interface IHttpService {
 
-    String get(String requestUrl);
+    <T> T get(String requestUrl, Class outputClass) throws IOException;
 }
