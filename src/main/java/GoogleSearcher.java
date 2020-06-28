@@ -7,6 +7,7 @@ public class GoogleSearcher {
     private String searchEngineID;
     private String searchApiKey;
     private IHttpService httpService;
+    private static final String GOOGLE_SEARCH_URL_FORMAT = "https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s";
 
     public GoogleSearcher(IHttpService httpService) {
         this.httpService = httpService;
@@ -25,7 +26,7 @@ public class GoogleSearcher {
     }
 
     String getSearchUrl(String searchTerm) {
-        return String.format("https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s",
+        return String.format(GOOGLE_SEARCH_URL_FORMAT,
                 this.searchApiKey,
                 this.searchEngineID,
                 searchTerm
