@@ -1,6 +1,9 @@
+package google;
+
+import crawler.AppProperties;
+import google.model.GoogleSearchResult;
+import google.model.exception.GoogleSearchException;
 import http.IHttpService;
-import model.GoogleSearchResult;
-import model.exceptions.CrawlerException;
 
 public class GoogleSearcher {
 
@@ -21,7 +24,7 @@ public class GoogleSearcher {
             GoogleSearchResult searchResult = this.httpService.get(getSearchUrl(searchTerm), GoogleSearchResult.class);
             return searchResult;
         } catch (Exception e) {
-            throw new CrawlerException(e);
+            throw new GoogleSearchException(e);
         }
     }
 
