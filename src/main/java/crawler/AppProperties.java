@@ -1,3 +1,5 @@
+package crawler;
+
 import model.exceptions.CrawlerException;
 
 import java.io.FileInputStream;
