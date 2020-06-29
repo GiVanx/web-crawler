@@ -42,7 +42,7 @@ public class WebCrawler {
         }
     }
 
-    public void stop() {
+    public boolean stop() {
         if (executorService != null) {
             executorService.shutdown();
             try {
@@ -53,6 +53,7 @@ public class WebCrawler {
                 executorService.shutdownNow();
             }
         }
+        return executorService.isShutdown();
     }
 
     private List<String> getTopJsLibraryNames(Map<String, Integer> finalResult) {

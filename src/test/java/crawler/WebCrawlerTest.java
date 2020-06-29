@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -53,7 +54,7 @@ public class WebCrawlerTest {
 
         List<String> result = webCrawler.crawl(searchTerm);
 
-        System.out.println(result);
+        boolean isShutDown = webCrawler.stop();
 
         assertEquals(5, result.size());
         assertEquals("lib3", result.get(0));
@@ -61,6 +62,7 @@ public class WebCrawlerTest {
         assertEquals("lib4", result.get(2));
         assertEquals("lib5", result.get(3));
         assertEquals("lib1", result.get(4));
+        assertTrue(isShutDown);
     }
 
     private Map<String, Integer> getMap(List<String> libs, List<Integer> libCounts) {
