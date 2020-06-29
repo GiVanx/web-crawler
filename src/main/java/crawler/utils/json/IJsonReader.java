@@ -1,4 +1,4 @@
-package json;
+package crawler.utils.json;
 
 import java.io.IOException;
 import java.io.InputStream;

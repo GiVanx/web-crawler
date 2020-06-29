@@ -1,8 +1,8 @@
 {
   "kind": "customsearch#search",
   "url": {
-    "type": "application/json",
-    "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=json"
+    "type": "application/crawler.utils.json",
+    "template": "https://www.googleapis.com/customsearch/v1?q={searchTerms}&num={count?}&start={startIndex?}&lr={language?}&safe={safe?}&cx={cx?}&sort={sort?}&filter={filter?}&gl={gl?}&cr={cr?}&googlehost={googleHost?}&c2coff={disableCnTwTranslation?}&hq={hq?}&hl={hl?}&siteSearch={siteSearch?}&siteSearchFilter={siteSearchFilter?}&exactTerms={exactTerms?}&excludeTerms={excludeTerms?}&linkSite={linkSite?}&orTerms={orTerms?}&relatedSite={relatedSite?}&dateRestrict={dateRestrict?}&lowRange={lowRange?}&highRange={highRange?}&searchType={searchType}&fileType={fileType?}&rights={rights?}&imgSize={imgSize?}&imgType={imgType?}&imgColorType={imgColorType?}&imgDominantColor={imgDominantColor?}&alt=crawler.utils.json"
   },
   "queries": {
     "request": [
@@ -155,7 +155,7 @@
             "title": "Cars (2006) - IMDb",
             "og:description": "Directed by John Lasseter, Joe Ranft.  With Owen Wilson, Bonnie Hunt, Paul Newman, Larry the Cable Guy. A hot-shot race-car named Lightning McQueen gets waylaid in Radiator Springs, where he finds the true meaning of friendship and family.",
             "fb:app_id": "115109575169727",
-            "og:url": "http://www.imdb.com/title/tt0317219/",
+            "og:url": "crawler.utils.http://www.imdb.com/title/tt0317219/",
             "request_id": "5XHT5SJE3HZFK6E631AP"
           }
         ],
@@ -368,7 +368,7 @@
         "person": [
           {
             "name": "N.B.",
-            "url": "http://www.youtube.com/user/TheFirewhirl"
+            "url": "crawler.utils.http://www.youtube.com/user/TheFirewhirl"
           }
         ],
         "metatags": [
@@ -381,7 +381,7 @@
             "al:ios:app_name": "YouTube",
             "og:title": "Official Trailer: Cars (2006)",
             "og:image:height": "720",
-            "al:android:package": "com.google.android.youtube",
+            "al:android:package": "com.crawler.google.android.youtube",
             "title": "Official Trailer: Cars (2006)",
             "al:ios:url": "vnd.youtube://www.youtube.com/watch?v=SbXIj2T-_uk&feature=applinks",
             "al:web:url": "https://www.youtube.com/watch?v=SbXIj2T-_uk&feature=applinks",
@@ -452,7 +452,7 @@
             "msapplication-tilecolor": "#333",
             "vicurrentdatetime": "637267337646597882",
             "msapplication-config": "/Static/images/favicons/browserconfig.xml",
-            "og:image": "//assets.volvocars.com/us/~/media/us/images/google-cardboard/volvoreality-social.jpg",
+            "og:image": "//assets.volvocars.com/us/~/media/us/images/crawler.google-cardboard/volvoreality-social.jpg",
             "apple-mobile-web-app-status-bar-style": "black",
             "viewport": "user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1",
             "apple-mobile-web-app-capable": "yes",
@@ -498,7 +498,7 @@
         "person": [
           {
             "name": "Pixar Cars",
-            "url": "http://www.youtube.com/channel/UC_VtrptObkqqp9tp3jycINA"
+            "url": "crawler.utils.http://www.youtube.com/channel/UC_VtrptObkqqp9tp3jycINA"
           }
         ],
         "metatags": [
@@ -509,7 +509,7 @@
             "twitter:card": "player",
             "og:site_name": "YouTube",
             "twitter:url": "https://www.youtube.com/watch?v=L9ZYdShgtPE",
-            "al:android:package": "com.google.android.youtube",
+            "al:android:package": "com.crawler.google.android.youtube",
             "title": "Best Opening Races From Pixar's Cars! | Pixar Cars",
             "al:ios:url": "vnd.youtube://www.youtube.com/watch?v=L9ZYdShgtPE&feature=applinks",
             "og:description": "These opening races will keep you on the edge of your seat!",

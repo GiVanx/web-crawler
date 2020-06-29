@@ -2,8 +2,8 @@ package crawler;
 
 import crawler.factory.ICrawlerWorkerFactory;
 import crawler.model.exceptions.CrawlerException;
-import google.IGoogleSearcher;
-import google.model.GoogleSearchResult;
+import crawler.google.IGoogleSearcher;
+import crawler.google.model.GoogleSearchResult;
 
 import java.util.*;
 import java.util.concurrent.*;

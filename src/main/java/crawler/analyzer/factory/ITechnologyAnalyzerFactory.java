@@ -1,6 +1,6 @@
-package analyzer.factory;
+package crawler.analyzer.factory;
 
-import analyzer.TechnologyAnalyzer;
+import crawler.analyzer.TechnologyAnalyzer;
 
 public interface ITechnologyAnalyzerFactory {
 

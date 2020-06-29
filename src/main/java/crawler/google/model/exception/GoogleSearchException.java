@@ -1,4 +1,4 @@
-package google.model.exception;
+package crawler.google.model.exception;
 
 public class GoogleSearchException extends RuntimeException {
 

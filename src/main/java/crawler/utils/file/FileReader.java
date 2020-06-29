@@ -1,6 +1,6 @@
-package file;
+package crawler.utils.file;
 
-import json.IJsonReader;
+import crawler.utils.json.IJsonReader;
 
 import java.io.*;
 

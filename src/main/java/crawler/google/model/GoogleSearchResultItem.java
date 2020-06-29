@@ -1,4 +1,4 @@
-package google.model;
+package crawler.google.model;
 
 public class GoogleSearchResultItem {
 

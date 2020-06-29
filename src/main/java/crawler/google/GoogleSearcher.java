@@ -1,13 +1,10 @@
-package google;
+package crawler.google;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import crawler.utils.AppProperties;
-import google.model.GoogleSearchResult;
-import google.model.exception.GoogleSearchException;
-import http.IHttpService;
+import crawler.google.model.GoogleSearchResult;
+import crawler.google.model.exception.GoogleSearchException;
+import crawler.utils.http.IHttpService;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -23,6 +20,9 @@ public class GoogleSearcher implements IGoogleSearcher {
         this.httpService = httpService;
         this.searchEngineID = AppProperties.getInstance().getProperties().getProperty("google.search.engine.id");
         this.searchApiKey = AppProperties.getInstance().getProperties().getProperty("google.search.api.key");
+
+        System.out.println(this.searchEngineID);
+        System.out.println(this.searchApiKey);
     }
 
     @Override

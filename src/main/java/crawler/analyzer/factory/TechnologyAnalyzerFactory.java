@@ -1,9 +1,9 @@
-package analyzer.factory;
+package crawler.analyzer.factory;
 
-import analyzer.TechnologyAnalyzer;
+import crawler.analyzer.TechnologyAnalyzer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import file.FileReader;
-import json.JsonReader;
+import crawler.utils.file.FileReader;
+import crawler.utils.json.JsonReader;
 
 public class TechnologyAnalyzerFactory implements ITechnologyAnalyzerFactory {
 

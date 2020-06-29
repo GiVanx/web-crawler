@@ -1,4 +1,4 @@
-package analyzer.model;
+package crawler.analyzer.model;
 
 import java.util.Collections;
 import java.util.Map;

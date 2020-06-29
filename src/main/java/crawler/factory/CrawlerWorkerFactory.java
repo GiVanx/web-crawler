@@ -1,8 +1,8 @@
 package crawler.factory;
 
-import analyzer.factory.ITechnologyAnalyzerFactory;
+import crawler.analyzer.factory.ITechnologyAnalyzerFactory;
 import crawler.CrawlerWorker;
-import http.URLReader;
+import crawler.utils.http.URLReader;
 
 public class CrawlerWorkerFactory implements ICrawlerWorkerFactory {
 

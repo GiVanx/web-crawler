@@ -1,4 +1,4 @@
-package google.model;
+package crawler.google.model;
 
 import java.util.List;
 import java.util.stream.Collectors;

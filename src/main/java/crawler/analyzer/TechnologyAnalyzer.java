@@ -1,9 +1,9 @@
-package analyzer;
+package crawler.analyzer;
 
-import analyzer.exceptions.TechnologyAnalyzerException;
-import analyzer.model.App;
-import analyzer.model.TechnologyData;
-import file.IFileReader;
+import crawler.analyzer.exceptions.TechnologyAnalyzerException;
+import crawler.analyzer.model.App;
+import crawler.analyzer.model.TechnologyData;
+import crawler.utils.file.IFileReader;
 
 import java.io.IOException;
 import java.util.ArrayList;

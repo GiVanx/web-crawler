@@ -1,6 +1,6 @@
-package google;
+package crawler.google;
 
-import google.model.GoogleSearchResult;
+import crawler.google.model.GoogleSearchResult;
 
 public interface IGoogleSearcher {
 

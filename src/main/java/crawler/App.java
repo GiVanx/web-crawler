@@ -1,12 +1,12 @@
 package crawler;
 
-import analyzer.factory.ITechnologyAnalyzerFactory;
-import analyzer.factory.TechnologyAnalyzerFactory;
+import crawler.analyzer.factory.ITechnologyAnalyzerFactory;
+import crawler.analyzer.factory.TechnologyAnalyzerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import crawler.factory.CrawlerWorkerFactory;
-import google.GoogleSearcher;
-import http.HttpService;
-import json.JsonReader;
+import crawler.google.GoogleSearcher;
+import crawler.utils.http.HttpService;
+import crawler.utils.json.JsonReader;
 
 import java.util.List;
 import java.util.Scanner;
@@ -21,9 +21,13 @@ public class App {
 
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.print("\n[Press 'e' to exit] >> ");
+            System.out.print("[Press 'e' to exit] >> ");
 
             String searchTerm = scanner.nextLine();
+
+            if (searchTerm.length() == 0) {
+                continue;
+            }
 
             if (searchTerm.length() == 1 && searchTerm.charAt(0) == 'e') {
                 break;
@@ -37,6 +41,7 @@ public class App {
                 for (int i = 0; i < topJsLibraries.size(); i++) {
                     System.out.println(String.format("%d) %s", i + 1, topJsLibraries.get(i)));
                 }
+                System.out.println();
             }
         }
 

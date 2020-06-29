@@ -1,6 +1,6 @@
-package http;
+package crawler.utils.http;
 
-import json.IJsonReader;
+import crawler.utils.json.IJsonReader;
 
 import java.io.IOException;
 import java.net.URL;

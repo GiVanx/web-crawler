@@ -1,4 +1,4 @@
-package analyzer;
+package crawler.analyzer;
 
 public interface ITechnologyAnalyzer {
 

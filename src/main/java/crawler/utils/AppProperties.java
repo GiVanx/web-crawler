@@ -27,6 +27,7 @@ public class AppProperties {
 
                 Properties properties = new Properties();
                 properties.load(input);
+                System.out.println("properties " + properties);
                 appProperties = new AppProperties(properties);
 
             } catch (Exception e) {

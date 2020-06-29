@@ -1,7 +1,7 @@
 package crawler;
 
-import analyzer.ITechnologyAnalyzer;
-import http.IURLReader;
+import crawler.analyzer.ITechnologyAnalyzer;
+import crawler.utils.http.IURLReader;
 
 import java.util.HashMap;
 import java.util.List;
