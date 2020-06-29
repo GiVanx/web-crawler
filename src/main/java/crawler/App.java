@@ -5,8 +5,10 @@ import crawler.analyzer.factory.TechnologyAnalyzerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import crawler.factory.CrawlerWorkerFactory;
 import crawler.google.GoogleSearcher;
-import crawler.utils.http.HttpService;
+import crawler.utils.file.IStreamReader;
+import crawler.utils.file.JsonStreamReader;
 import crawler.utils.json.JsonReader;
+import crawler.utils.stream.URLStream;
 
 import java.util.List;
 import java.util.Scanner;
@@ -17,7 +19,9 @@ public class App {
 
         ITechnologyAnalyzerFactory technologyAnalyzerFactory = new TechnologyAnalyzerFactory();
 
-        WebCrawler crawler = new WebCrawler(new GoogleSearcher(new HttpService(new JsonReader(new ObjectMapper()))), new CrawlerWorkerFactory(technologyAnalyzerFactory));
+        IStreamReader urlStreamReader = new JsonStreamReader(new JsonReader(new ObjectMapper()), new URLStream());
+
+        WebCrawler crawler = new WebCrawler(new GoogleSearcher(urlStreamReader), new CrawlerWorkerFactory(technologyAnalyzerFactory));
 
         Scanner scanner = new Scanner(System.in);
         while (true) {

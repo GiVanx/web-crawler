@@ -3,7 +3,7 @@ package crawler.google;
 import crawler.utils.AppProperties;
 import crawler.google.model.GoogleSearchResult;
 import crawler.google.model.exception.GoogleSearchException;
-import crawler.utils.http.IHttpService;
+import crawler.utils.file.IStreamReader;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -13,16 +13,13 @@ public class GoogleSearcher implements IGoogleSearcher {
 
     private String searchEngineID;
     private String searchApiKey;
-    private IHttpService httpService;
+    private IStreamReader streamReader;
     private static final String GOOGLE_SEARCH_URL_FORMAT = "https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s";
 
-    public GoogleSearcher(IHttpService httpService) {
-        this.httpService = httpService;
+    public GoogleSearcher(IStreamReader streamReader) {
+        this.streamReader = streamReader;
         this.searchEngineID = AppProperties.getInstance().getProperties().getProperty("google.search.engine.id");
         this.searchApiKey = AppProperties.getInstance().getProperties().getProperty("google.search.api.key");
-
-        System.out.println(this.searchEngineID);
-        System.out.println(this.searchApiKey);
     }
 
     @Override
@@ -30,7 +27,7 @@ public class GoogleSearcher implements IGoogleSearcher {
 
         try {
             System.out.println("[Google Search] Searching for '" + searchTerm + "'...");
-            GoogleSearchResult searchResult = this.httpService.get(getSearchUrl(searchTerm), GoogleSearchResult.class);
+            GoogleSearchResult searchResult = this.streamReader.read(getSearchUrl(searchTerm), GoogleSearchResult.class);
             System.out.println("[Google Search][Successful]");
 //            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 //            GoogleSearchResult searchResult = objectMapper.readValue(new File("mockGoogleResult.txt"), GoogleSearchResult.class);
@@ -42,7 +39,7 @@ public class GoogleSearcher implements IGoogleSearcher {
         }
     }
 
-    String getSearchUrl(String searchTerm) throws UnsupportedEncodingException {
+    private String getSearchUrl(String searchTerm) throws UnsupportedEncodingException {
         return String.format(GOOGLE_SEARCH_URL_FORMAT,
                 this.searchApiKey,
                 this.searchEngineID,

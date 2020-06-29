@@ -25,6 +25,8 @@ public class JsonReader implements IJsonReader {
             response.append((char)c);
         }
 
+        inputStream.close();
+
         return (T)this.objectMapper.readValue(response.toString(), outputClass);
     }
 }

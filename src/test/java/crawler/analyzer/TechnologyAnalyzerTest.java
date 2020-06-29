@@ -3,7 +3,7 @@ package crawler.analyzer;
 import crawler.analyzer.exceptions.TechnologyAnalyzerException;
 import crawler.analyzer.model.App;
 import crawler.analyzer.model.TechnologyData;
-import crawler.utils.file.IFileReader;
+import crawler.utils.file.IStreamReader;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +29,7 @@ public class TechnologyAnalyzerTest {
 
     @Test
     public void testGetJsLibraryNameWhenNoTechnologyDataExist() throws IOException {
-        IFileReader fileReader = mock(IFileReader.class);
+        IStreamReader fileReader = mock(IStreamReader.class);
         TechnologyData technologyData = mock(TechnologyData.class);
         when(fileReader.read(TechnologyAnalyzer.TECHNOLOGY_DATA_FILE_PATH, TechnologyData.class))
                 .thenReturn(technologyData);
@@ -42,7 +42,7 @@ public class TechnologyAnalyzerTest {
 
     @Test
     public void testGetJsLibraryNameWhenMatchingTechnologyFound() throws IOException {
-        IFileReader fileReader = mock(IFileReader.class);
+        IStreamReader fileReader = mock(IStreamReader.class);
         TechnologyData technologyData = mock(TechnologyData.class);
         when(fileReader.read(TechnologyAnalyzer.TECHNOLOGY_DATA_FILE_PATH, TechnologyData.class))
                 .thenReturn(technologyData);
@@ -60,7 +60,7 @@ public class TechnologyAnalyzerTest {
 
     @Test
     public void testGetJsLibraryNameWhenNoMatchingTechnologyFound() throws IOException {
-        IFileReader fileReader = mock(IFileReader.class);
+        IStreamReader fileReader = mock(IStreamReader.class);
         TechnologyData technologyData = mock(TechnologyData.class);
         when(fileReader.read(TechnologyAnalyzer.TECHNOLOGY_DATA_FILE_PATH, TechnologyData.class))
                 .thenReturn(technologyData);
@@ -78,7 +78,7 @@ public class TechnologyAnalyzerTest {
 
     @Test(expected = TechnologyAnalyzerException.class)
     public void testGetInstanceWhenFailedToReadTechnologyData() throws IOException {
-        IFileReader fileReader = mock(IFileReader.class);
+        IStreamReader fileReader = mock(IStreamReader.class);
         when(fileReader.read(TechnologyAnalyzer.TECHNOLOGY_DATA_FILE_PATH, TechnologyData.class))
                 .thenThrow(new TechnologyAnalyzerException("Failed to load technology data", new IOException()));
 

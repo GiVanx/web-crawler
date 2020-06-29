@@ -1,7 +1,7 @@
 package crawler;
 
 import crawler.analyzer.ITechnologyAnalyzer;
-import crawler.utils.http.IURLReader;
+import crawler.utils.http.IHTMLReader;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,12 +11,12 @@ import java.util.concurrent.Callable;
 public class CrawlerWorker implements Callable<Map<String, Integer>> {
 
     private String url;
-    private IURLReader urlReader;
+    private IHTMLReader urlReader;
     private ITechnologyAnalyzer technologyAnalyzer;
     private static final String SCRIPT_TAG_NAME = "script";
     private static final String SCRIPT_TAG_SRC_ATTRIBUTE_NAME = "src";
 
-    public CrawlerWorker(String url, IURLReader urlReader, ITechnologyAnalyzer technologyAnalyzer) {
+    public CrawlerWorker(String url, IHTMLReader urlReader, ITechnologyAnalyzer technologyAnalyzer) {
         this.url = url;
         this.urlReader = urlReader;
         this.technologyAnalyzer = technologyAnalyzer;
