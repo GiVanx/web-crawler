@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
-public class URLStream extends GenericStream {
+public class URLStreamMaker implements IOInputStreamMaker {
 
     @Override
-    public InputStream getSource(String url) throws IOException {
+    public InputStream getStream(String url) throws IOException{
         return new URL(url).openStream();
     }
 }

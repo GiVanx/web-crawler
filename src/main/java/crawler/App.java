@@ -8,7 +8,8 @@ import crawler.google.GoogleSearcher;
 import crawler.utils.file.IStreamReader;
 import crawler.utils.file.JsonStreamReader;
 import crawler.utils.json.JsonReader;
-import crawler.utils.stream.URLStream;
+import crawler.utils.stream.IOInputStreamService;
+import crawler.utils.stream.URLStreamMaker;
 
 import java.util.List;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class App {
 
         ITechnologyAnalyzerFactory technologyAnalyzerFactory = new TechnologyAnalyzerFactory();
 
-        IStreamReader urlStreamReader = new JsonStreamReader(new JsonReader(new ObjectMapper()), new URLStream());
+        IStreamReader urlStreamReader = new JsonStreamReader(new JsonReader(new ObjectMapper()), new IOInputStreamService(new URLStreamMaker()));
 
         WebCrawler crawler = new WebCrawler(new GoogleSearcher(urlStreamReader), new CrawlerWorkerFactory(technologyAnalyzerFactory));
 

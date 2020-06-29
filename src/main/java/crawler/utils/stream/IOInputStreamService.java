@@ -3,14 +3,19 @@ package crawler.utils.stream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public abstract class GenericStream implements IStream {
+public class IOInputStreamService implements IfaceIOInputStreamService {
 
     private InputStream inputStream;
+    private IOInputStreamMaker ioInputStreamMaker;
+
+    public IOInputStreamService(IOInputStreamMaker ioInputStreamMaker) {
+        this.ioInputStreamMaker = ioInputStreamMaker;
+    }
 
     @Override
     public InputStream open(String url) throws IOException {
         close();
-        this.inputStream = getSource(url);
+        this.inputStream = ioInputStreamMaker.getStream(url);
         return this.inputStream;
     }
 
@@ -20,6 +25,4 @@ public abstract class GenericStream implements IStream {
             this.inputStream.close();
         }
     }
-
-    public abstract InputStream getSource(String path) throws IOException;
 }

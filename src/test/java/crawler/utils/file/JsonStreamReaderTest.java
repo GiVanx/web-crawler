@@ -1,7 +1,7 @@
 package crawler.utils.file;
 
 import crawler.utils.json.IJsonReader;
-import crawler.utils.stream.IStream;
+import crawler.utils.stream.IfaceIOInputStreamService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,7 +22,7 @@ public class JsonStreamReaderTest {
     private IJsonReader jsonReader;
 
     @Mock
-    private IStream stream;
+    private IfaceIOInputStreamService stream;
 
     @Mock
     private InputStream inputStream;
