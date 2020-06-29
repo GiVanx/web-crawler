@@ -15,10 +15,10 @@ public class TechnologyAnalyzer implements ITechnologyAnalyzer {
 
     private static TechnologyAnalyzer technologyAnalyzer;
     private IFileReader fileReader;
-    private static final String TECHNOLOGY_DATA_FILE_PATH = "./apps.json";
+    public static final String TECHNOLOGY_DATA_FILE_PATH = "./apps.json";
     private TechnologyData technologyData;
 
-    public TechnologyAnalyzer(IFileReader fileReader) {
+    private TechnologyAnalyzer(IFileReader fileReader) {
         this.fileReader = fileReader;
     }
 
@@ -47,14 +47,11 @@ public class TechnologyAnalyzer implements ITechnologyAnalyzer {
 
     public String getJsLibraryName(String srcAttribute) {
 
-//        System.out.println("attr " + srcAttribute);
-
         List<String> technologyNames = new ArrayList<>();
         Map<String, App> technologyMap = this.technologyData.getApps();
         technologyMap.keySet().forEach(technologyName -> {
             App app = technologyMap.get(technologyName);
             if (app.getScriptPatterns() != null) {
-//                System.out.println("tech " + technologyName);
                 List<Pattern> scriptPatterns = technologyMap.get(technologyName).getScriptPatterns();
                 if (scriptPatterns != null && scriptPatterns.stream().anyMatch(pattern -> pattern.matcher(srcAttribute).find())) {
                     technologyNames.add(technologyName);
