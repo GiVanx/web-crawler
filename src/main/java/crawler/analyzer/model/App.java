@@ -9,8 +9,8 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class App {
-    List<Integer> cats;
-    List<Pattern> scriptPatterns;
+    private List<Integer> cats;
+    private List<Pattern> scriptPatterns;
 
     @JsonCreator
     public App(@JsonProperty("script") Object scriptPatterns) {
