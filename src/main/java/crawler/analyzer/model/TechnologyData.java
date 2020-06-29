@@ -12,7 +12,12 @@ public class TechnologyData {
     }
 
     public void filterJsLibraries() {
-        this.apps.entrySet().removeIf(entry -> entry.getValue().getScriptPatterns() == null);
+        this.apps.entrySet().removeIf(entry -> {
+            App app = entry.getValue();
+            return app.getScriptPatterns() == null
+                    || (app.getCats().contains(Category.BLOGS.getValue()))
+                    || (app.getCats().contains(Category.CMS.getValue()));
+        });
     }
 
     public void removeApp(String key) {
