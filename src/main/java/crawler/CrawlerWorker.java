@@ -11,24 +11,24 @@ import java.util.concurrent.Callable;
 public class CrawlerWorker implements Callable<Map<String, Integer>> {
 
     private String url;
-    private IHTMLReader urlReader;
+    private IHTMLReader htmlReader;
     private ITechnologyAnalyzer technologyAnalyzer;
-    private static final String SCRIPT_TAG_NAME = "script";
-    private static final String SCRIPT_TAG_SRC_ATTRIBUTE_NAME = "src";
+    public static final String SCRIPT_TAG_NAME = "script";
+    public static final String SCRIPT_TAG_SRC_ATTRIBUTE_NAME = "src";
 
-    public CrawlerWorker(String url, IHTMLReader urlReader, ITechnologyAnalyzer technologyAnalyzer) {
+    public CrawlerWorker(String url, IHTMLReader htmlReader, ITechnologyAnalyzer technologyAnalyzer) {
         this.url = url;
-        this.urlReader = urlReader;
+        this.htmlReader = htmlReader;
         this.technologyAnalyzer = technologyAnalyzer;
     }
 
     @Override
     public Map<String, Integer> call() {
         try {
-            this.urlReader.init(url);
+            this.htmlReader.init(url);
 
             Map<String, Integer> jsLibNameToCountMap = new HashMap<>();
-            List<String> srcAttributes = urlReader.getAttributes(SCRIPT_TAG_NAME, SCRIPT_TAG_SRC_ATTRIBUTE_NAME);
+            List<String> srcAttributes = htmlReader.getAttributes(SCRIPT_TAG_NAME, SCRIPT_TAG_SRC_ATTRIBUTE_NAME);
 
             srcAttributes.forEach(attr -> {
                 String libraryName = technologyAnalyzer.getJsLibraryName(attr);
@@ -39,6 +39,7 @@ public class CrawlerWorker implements Callable<Map<String, Integer>> {
                 }
             });
 
+            System.out.println("Map: " + jsLibNameToCountMap);
             System.out.println("[Successful] " + url);
 
             return jsLibNameToCountMap;
