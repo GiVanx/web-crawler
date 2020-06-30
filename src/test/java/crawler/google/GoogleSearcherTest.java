@@ -2,7 +2,7 @@ package crawler.google;
 
 import crawler.google.model.GoogleSearchResult;
 import crawler.google.model.exception.GoogleSearchException;
-import crawler.utils.file.IStreamReader;
+import crawler.utils.stream.IJsonStreamReader;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class GoogleSearcherTest extends TestCase {
 
     @Mock
-    private IStreamReader streamReader;
+    private IJsonStreamReader streamReader;
 
     @Mock
     private GoogleSearchResult searchResult;

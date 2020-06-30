@@ -2,7 +2,7 @@ package crawler.analyzer.factory;
 
 import crawler.analyzer.TechnologyAnalyzer;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import crawler.utils.file.JsonStreamReader;
+import crawler.utils.stream.JsonStreamReader;
 import crawler.utils.json.JsonReader;
 import crawler.utils.stream.FileStreamMaker;
 import crawler.utils.stream.IOInputStreamService;

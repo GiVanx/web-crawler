@@ -1,11 +1,10 @@
-package crawler.utils.file;
+package crawler.utils.stream;
 
 import crawler.utils.json.IJsonReader;
-import crawler.utils.stream.IfaceIOInputStreamService;
 
 import java.io.*;
 
-public class JsonStreamReader implements IStreamReader {
+public class JsonStreamReader implements IJsonStreamReader {
 
     private IJsonReader jsonReader;
     private IfaceIOInputStreamService sourceStream;

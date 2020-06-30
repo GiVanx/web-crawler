@@ -5,8 +5,8 @@ import crawler.analyzer.factory.TechnologyAnalyzerFactory;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import crawler.factory.CrawlerWorkerFactory;
 import crawler.google.GoogleSearcher;
-import crawler.utils.file.IStreamReader;
-import crawler.utils.file.JsonStreamReader;
+import crawler.utils.stream.IJsonStreamReader;
+import crawler.utils.stream.JsonStreamReader;
 import crawler.utils.json.JsonReader;
 import crawler.utils.stream.IOInputStreamService;
 import crawler.utils.stream.URLStreamMaker;
@@ -20,7 +20,7 @@ public class App {
 
         ITechnologyAnalyzerFactory technologyAnalyzerFactory = new TechnologyAnalyzerFactory();
 
-        IStreamReader urlStreamReader = new JsonStreamReader(new JsonReader(new ObjectMapper()), new IOInputStreamService(new URLStreamMaker()));
+        IJsonStreamReader urlStreamReader = new JsonStreamReader(new JsonReader(new ObjectMapper()), new IOInputStreamService(new URLStreamMaker()));
 
         WebCrawler crawler = new WebCrawler(new GoogleSearcher(urlStreamReader), new CrawlerWorkerFactory(technologyAnalyzerFactory));
 

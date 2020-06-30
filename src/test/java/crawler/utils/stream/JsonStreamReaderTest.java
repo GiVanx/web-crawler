@@ -1,7 +1,6 @@
-package crawler.utils.file;
+package crawler.utils.stream;
 
 import crawler.utils.json.IJsonReader;
-import crawler.utils.stream.IfaceIOInputStreamService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

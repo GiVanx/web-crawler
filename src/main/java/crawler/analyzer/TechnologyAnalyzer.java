@@ -3,7 +3,7 @@ package crawler.analyzer;
 import crawler.analyzer.exceptions.TechnologyAnalyzerException;
 import crawler.analyzer.model.App;
 import crawler.analyzer.model.TechnologyData;
-import crawler.utils.file.IStreamReader;
+import crawler.utils.stream.IJsonStreamReader;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,11 +14,11 @@ import java.util.regex.Pattern;
 public class TechnologyAnalyzer implements ITechnologyAnalyzer {
 
     private static TechnologyAnalyzer technologyAnalyzer;
-    private IStreamReader fileReader;
+    private IJsonStreamReader fileReader;
     public static final String TECHNOLOGY_DATA_FILE_PATH = "./apps.json";
     private TechnologyData technologyData;
 
-    private TechnologyAnalyzer(IStreamReader fileReader) {
+    private TechnologyAnalyzer(IJsonStreamReader fileReader) {
         this.fileReader = fileReader;
     }
 
@@ -37,7 +37,7 @@ public class TechnologyAnalyzer implements ITechnologyAnalyzer {
         }
     }
 
-    public static TechnologyAnalyzer getInstance(IStreamReader fileReader) {
+    public static TechnologyAnalyzer getInstance(IJsonStreamReader fileReader) {
         if (technologyAnalyzer == null) {
             technologyAnalyzer = new TechnologyAnalyzer(fileReader);
             technologyAnalyzer.init();

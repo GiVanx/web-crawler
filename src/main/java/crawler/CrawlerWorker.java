@@ -39,7 +39,6 @@ public class CrawlerWorker implements Callable<Map<String, Integer>> {
                 }
             });
 
-            System.out.println("Map: " + jsLibNameToCountMap);
             System.out.println("[Successful] " + url);
 
             return jsLibNameToCountMap;
