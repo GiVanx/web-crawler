@@ -6,8 +6,8 @@ import java.io.*;
 
 public class JsonStreamReader implements IJsonStreamReader {
 
-    private IJsonReader jsonReader;
-    private IfaceIOInputStreamService streamService;
+    private final IJsonReader jsonReader;
+    private final IfaceIOInputStreamService streamService;
 
     public JsonStreamReader(IJsonReader jsonReader, IfaceIOInputStreamService streamService) {
         this.jsonReader = jsonReader;

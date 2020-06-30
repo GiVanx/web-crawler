@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 
 public class HTMLReader implements IHTMLReader {
     private Document document;
+    private final int REQUET_TIMEOUT = 2 * 1000; // 2 seconds
 
     @Override
     public void init(String url) throws IOException {
-        System.out.println("[Fetching] " + url);
-        this.document = Jsoup.connect(url).get();
+        this.document = Jsoup.connect(url).timeout(REQUET_TIMEOUT).get();
     }
 
     @Override

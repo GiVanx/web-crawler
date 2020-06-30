@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 public class WebCrawler {
 
-    private IGoogleSearcher googleSearcher;
+    private final IGoogleSearcher googleSearcher;
     private static final int MAX_NUMBER_OF_WORKERS = 10;
     private static final int NUMBER_TOP_JS_LIBRARIES = 5;
-    private ICrawlerWorkerFactory workerFactory;
-    private ExecutorService executorService;
+    private final ICrawlerWorkerFactory workerFactory;
+    private final ExecutorService executorService;
 
     public WebCrawler(IGoogleSearcher googleSearcher, ICrawlerWorkerFactory workerFactory) {
         this.googleSearcher = googleSearcher;

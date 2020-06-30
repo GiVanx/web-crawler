@@ -9,7 +9,7 @@ import java.util.Properties;
 public class AppProperties {
 
     private static AppProperties appProperties;
-    private Properties properties;
+    private final Properties properties;
     private static final String APP_PROPERTIES_FILE_PATH = "src/main/resources/app.properties";
 
     private AppProperties(Properties properties) {
@@ -27,7 +27,6 @@ public class AppProperties {
 
                 Properties properties = new Properties();
                 properties.load(input);
-                System.out.println("properties " + properties);
                 appProperties = new AppProperties(properties);
 
             } catch (Exception e) {

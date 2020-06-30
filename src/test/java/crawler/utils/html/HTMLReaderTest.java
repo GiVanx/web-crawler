@@ -30,7 +30,7 @@ public class HTMLReaderTest {
     @Mock
     private Document document;
 
-    String url = "some/url";
+    private String url = "some/url";
 
     @Before
     public void init() throws IOException {

@@ -6,7 +6,7 @@ import java.io.InputStream;
 public class IOInputStreamService implements IfaceIOInputStreamService {
 
     private InputStream inputStream;
-    private IOInputStreamMaker ioInputStreamMaker;
+    private final IOInputStreamMaker ioInputStreamMaker;
 
     public IOInputStreamService(IOInputStreamMaker ioInputStreamMaker) {
         this.ioInputStreamMaker = ioInputStreamMaker;

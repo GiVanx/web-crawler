@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class CrawlerWorker implements ICrawlerWorker {
 
-    private String url;
-    private IHTMLReader htmlReader;
-    private ITechnologyAnalyzer technologyAnalyzer;
+    private final String url;
+    private final IHTMLReader htmlReader;
+    private final ITechnologyAnalyzer technologyAnalyzer;
     public static final String SCRIPT_TAG_NAME = "script";
     public static final String SCRIPT_TAG_SRC_ATTRIBUTE_NAME = "src";
 
@@ -24,6 +24,7 @@ public class CrawlerWorker implements ICrawlerWorker {
     @Override
     public Map<String, Integer> call() {
         try {
+            System.out.println("[Fetching] " + url);
             this.htmlReader.init(url);
 
             Map<String, Integer> jsLibNameToCountMap = new HashMap<>();

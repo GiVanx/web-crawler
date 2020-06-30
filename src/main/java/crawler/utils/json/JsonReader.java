@@ -8,7 +8,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 public class JsonReader implements IJsonReader {
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
     public JsonReader(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;

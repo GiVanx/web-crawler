@@ -11,9 +11,9 @@ import java.nio.charset.StandardCharsets;
 
 public class GoogleSearcher implements IGoogleSearcher {
 
-    private String searchEngineID;
-    private String searchApiKey;
-    private IJsonStreamReader streamReader;
+    private final String searchEngineID;
+    private final String searchApiKey;
+    private final IJsonStreamReader streamReader;
     private static final String GOOGLE_SEARCH_URL_FORMAT = "https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q=%s";
 
     public GoogleSearcher(IJsonStreamReader streamReader) {
@@ -27,10 +27,10 @@ public class GoogleSearcher implements IGoogleSearcher {
 
         try {
             System.out.println("[Google Search] Searching for '" + searchTerm + "'...");
+
             GoogleSearchResult searchResult = this.streamReader.read(getSearchUrl(searchTerm), GoogleSearchResult.class);
+
             System.out.println("[Google Search][Successful]");
-//            ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-//            GoogleSearchResult searchResult = objectMapper.readValue(new File("mockGoogleResult.txt"), GoogleSearchResult.class);
 
             return searchResult;
         } catch (Exception e) {

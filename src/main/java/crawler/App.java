@@ -46,8 +46,10 @@ public class App {
                 for (int i = 0; i < topJsLibraries.size(); i++) {
                     System.out.println(String.format("%d) %s", i + 1, topJsLibraries.get(i)));
                 }
-                System.out.println();
+            } else {
+                System.out.println("\nNo Javascript libraries could be found.");
             }
+            System.out.println();
         }
 
         crawler.stop();

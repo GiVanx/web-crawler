@@ -7,7 +7,7 @@ import crawler.utils.html.HTMLReader;
 
 public class CrawlerWorkerFactory implements ICrawlerWorkerFactory {
 
-    private ITechnologyAnalyzerFactory technologyAnalyzerFactory;
+    private final ITechnologyAnalyzerFactory technologyAnalyzerFactory;
 
     public CrawlerWorkerFactory(ITechnologyAnalyzerFactory technologyAnalyzerFactory) {
         this.technologyAnalyzerFactory = technologyAnalyzerFactory;

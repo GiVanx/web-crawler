@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public class TechnologyAnalyzer implements ITechnologyAnalyzer {
 
     private static TechnologyAnalyzer technologyAnalyzer;
-    private IJsonStreamReader fileReader;
+    private final IJsonStreamReader fileReader;
     public static final String TECHNOLOGY_DATA_FILE_PATH = "./apps.json";
     private TechnologyData technologyData;
 
