@@ -36,4 +36,4 @@ was changed to:
 
 ### Additional
 
-![Class diagram](https://github.com/GiVanx/web-crawler/blob/master/docs/class-diagram.pdf)
+* ![Class diagram](https://github.com/GiVanx/web-crawler/blob/master/docs/class-diagram.pdf)
