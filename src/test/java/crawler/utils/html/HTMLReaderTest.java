@@ -1,4 +1,4 @@
-package crawler.utils.http;
+package crawler.utils.html;
 
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;

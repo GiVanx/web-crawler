@@ -1,8 +1,8 @@
 package crawler.factory;
 
-import crawler.CrawlerWorker;
+import crawler.ICrawlerWorker;
 
 public interface ICrawlerWorkerFactory {
 
-    CrawlerWorker create(String url);
+    ICrawlerWorker create(String url);
 }

@@ -1,14 +1,13 @@
 package crawler;
 
 import crawler.analyzer.ITechnologyAnalyzer;
-import crawler.utils.http.IHTMLReader;
+import crawler.utils.html.IHTMLReader;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
-public class CrawlerWorker implements Callable<Map<String, Integer>> {
+public class CrawlerWorker implements ICrawlerWorker {
 
     private String url;
     private IHTMLReader htmlReader;

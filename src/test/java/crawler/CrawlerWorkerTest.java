@@ -1,7 +1,7 @@
 package crawler;
 
 import crawler.analyzer.ITechnologyAnalyzer;
-import crawler.utils.http.IHTMLReader;
+import crawler.utils.html.IHTMLReader;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

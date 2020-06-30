@@ -1,8 +1,9 @@
 package crawler.factory;
 
+import crawler.ICrawlerWorker;
 import crawler.analyzer.factory.ITechnologyAnalyzerFactory;
 import crawler.CrawlerWorker;
-import crawler.utils.http.HTMLReader;
+import crawler.utils.html.HTMLReader;
 
 public class CrawlerWorkerFactory implements ICrawlerWorkerFactory {
 
@@ -13,7 +14,7 @@ public class CrawlerWorkerFactory implements ICrawlerWorkerFactory {
     }
 
     @Override
-    public CrawlerWorker create(String url) {
+    public ICrawlerWorker create(String url) {
         return new CrawlerWorker(url, new HTMLReader(), technologyAnalyzerFactory.getOrCreate());
     }
 }

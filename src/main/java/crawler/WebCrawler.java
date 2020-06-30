@@ -27,7 +27,7 @@ public class WebCrawler {
 
         GoogleSearchResult searchResult = googleSearcher.search(searchTerm);
 
-        List<CrawlerWorker> workers = searchResult.getItems().stream().map(item -> workerFactory.create(item.getLink()))
+        List<ICrawlerWorker> workers = searchResult.getItems().stream().map(item -> workerFactory.create(item.getLink()))
                 .collect(Collectors.toList());
 
         try {

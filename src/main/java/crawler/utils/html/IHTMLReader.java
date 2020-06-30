@@ -1,4 +1,4 @@
-package crawler.utils.http;
+package crawler.utils.html;
 
 import java.io.IOException;
 import java.util.List;

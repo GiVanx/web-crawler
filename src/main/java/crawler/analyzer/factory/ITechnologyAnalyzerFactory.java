@@ -1,8 +1,8 @@
 package crawler.analyzer.factory;
 
-import crawler.analyzer.TechnologyAnalyzer;
+import crawler.analyzer.ITechnologyAnalyzer;
 
 public interface ITechnologyAnalyzerFactory {
 
-    TechnologyAnalyzer getOrCreate();
+    ITechnologyAnalyzer getOrCreate();
 }
